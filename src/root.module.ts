@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import configuration from "../config/configuration";
 import { validate } from "./common/validator/env.validation";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
   imports: [
@@ -12,7 +13,14 @@ import { validate } from "./common/validator/env.validation";
         load: [configuration],
         validate
       }
-    )
+    ),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) =>{
+        return configService.get('database')
+      },
+      inject: [ConfigService],
+    })
   ],
   controllers: [],
   providers: [],
