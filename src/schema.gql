@@ -1,0 +1,53 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginResponse {
+  accessToken: String!
+  refreshToken: String!
+  user: User!
+}
+
+type Mutation {
+  logIn(loginInput: LoginInput!): LoginResponse!
+  refreshToken(token: String!): RefreshTokenResponse!
+  signUp(signupAuthInput: SignupAuthInput!): SignupResponse!
+}
+
+type Query {
+  hello: String!
+}
+
+type RefreshTokenResponse {
+  accessToken: String!
+  refreshToken: String
+}
+
+input SignupAuthInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+type SignupResponse {
+  email: String!
+  firstName: String!
+  id: String!
+  lastName: String!
+  userName: String!
+}
+
+type User {
+  email: String!
+  firstName: String!
+  id: String!
+  isEmailVerified: Boolean!
+  lastName: String!
+  password: String!
+}
