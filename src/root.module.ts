@@ -13,6 +13,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { AuthModule } from "./auth/auth.module";
 import { StartupsModule } from "./startups/startups.module";
 import { StartupsApplyModule } from "./startups-apply/startups-apply.module";
+import { InvestorModule } from "./investor/investor.module";
 
 @Module({
   imports: [
@@ -44,7 +45,8 @@ import { StartupsApplyModule } from "./startups-apply/startups-apply.module";
     UtilsModule,
     AuthModule,
     StartupsModule,
-    StartupsApplyModule
+    StartupsApplyModule,
+    InvestorModule
   ],
   controllers: [],
   providers: [ ]

@@ -8,6 +8,11 @@ enum ConfirmStatusEnum {
   REJECTED
 }
 
+input CreateInvestorInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateStartupInput {
   Name: String!
   closingDate: String!
@@ -53,6 +58,19 @@ enum IndustryTypeEnum {
   SERVICE
 }
 
+type Investor {
+  age: Int!
+  confirmStatus: ConfirmStatusEnum!
+  employCount: String!
+  id: String!
+  investContext: String!
+  investmentEmail: String!
+  investmentField: String!
+  organizationalChat: String!
+  previewExp: String!
+  totalAnnualIncome: Int!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -65,18 +83,22 @@ type LoginResponse {
 }
 
 type Mutation {
+  createInvestor(createInvestorInput: CreateInvestorInput!): Investor!
   createStartup(createStartupInput: CreateStartupInput!): Startup!
   createStartupsApply(createStartupsApplyInput: CreateStartupsApplyInput!): StartupsApply!
   inactivateStartup(id: String!): Startup!
   logIn(loginInput: LoginInput!): LoginResponse!
   refreshToken(token: String!): RefreshTokenResponse!
+  removeInvestor(id: Int!): Investor!
   signUp(signupAuthInput: SignupAuthInput!): SignupResponse!
+  updateInvestor(updateInvestorInput: UpdateInvestorInput!): Investor!
   updateStartup(updateStartupInput: UpdateStartupInput!): Startup!
 }
 
 type Query {
   allStartups: [Startup!]!
   hello: String!
+  investor(id: Int!): Investor!
   startupById(id: Int!): Startup!
   startupsApply: [StartupsApply!]!
   startupsApplyByCurrentUser: [StartupsApply!]!
@@ -146,6 +168,12 @@ type StartupsApply {
   userId: String!
   website: String!
   yourTitle: String!
+}
+
+input UpdateInvestorInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateStartupInput {

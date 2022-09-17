@@ -1,8 +1,9 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { StartupsApply } from "../../startups-apply/entities/startups-apply.entity";
 import { Exclude } from "class-transformer";
 import { Startup } from "../../startups/entities/startup.entity";
+import { Investor } from "../../investor/entities/investor.entity";
 
 @ObjectType()
 @Entity({ name: "users" })  // TODO make index firstname and email
@@ -44,4 +45,6 @@ export class User {
   @Field(type => [Startup], { nullable: true })
   startup?: Startup[];
 
+  @OneToOne(() => Investor)
+  investorProfile?: Investor;
 }
