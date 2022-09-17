@@ -1,8 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import configuration from "../config/configuration";
 import { validate } from "./common/validator/env.validation";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { MailerModule } from "@nestjs-modules/mailer";
+import { MailerConfig } from "../config/mailer.config";
 
 @Module({
   imports: [
@@ -16,13 +18,18 @@ import { TypeOrmModule } from "@nestjs/typeorm";
     ),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) =>{
-        return configService.get('database')
+      useFactory: (configService: ConfigService) => {
+        return configService.get("database");
       },
-      inject: [ConfigService],
-    })
+      inject: [ConfigService]
+    }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: MailerConfig
+    }),
   ],
   controllers: [],
-  providers: [],
+  providers: []
 })
-export class RootModule {}
+export class RootModule {
+}
