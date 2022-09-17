@@ -2,6 +2,57 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+enum ConfirmStatusEnum {
+  APPROVED
+  PENDING
+  REJECTED
+}
+
+input CreateStartupInput {
+  Name: String!
+  closingDate: String!
+  details: String!
+  email: String!
+  foundedOn: String!
+  investmentMin: String!
+  investmentTarget: String!
+  location: String!
+  startupsApplyId: String!
+  subtitle: String!
+  summery: String!
+  website: String!
+}
+
+input CreateStartupsApplyInput {
+  companyAddress: String!
+  companyName: String!
+  currentAudienceSize: String!
+  expectRaiseAmount: String!
+  hasProductInMarket: Boolean!
+  industryType: String!
+  isMakingMoney: Boolean!
+  pastProject: String!
+  summery: String!
+  totalRaisedUntilNow: String!
+  traction: String!
+  website: String!
+  yourTitle: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum IndustryTypeEnum {
+  ENERGY
+  FASHION
+  FOOD
+  HEALTH
+  MEDIA
+  SERVICE
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -14,13 +65,22 @@ type LoginResponse {
 }
 
 type Mutation {
+  createStartup(createStartupInput: CreateStartupInput!): Startup!
+  createStartupsApply(createStartupsApplyInput: CreateStartupsApplyInput!): StartupsApply!
+  inactivateStartup(id: String!): Startup!
   logIn(loginInput: LoginInput!): LoginResponse!
   refreshToken(token: String!): RefreshTokenResponse!
   signUp(signupAuthInput: SignupAuthInput!): SignupResponse!
+  updateStartup(updateStartupInput: UpdateStartupInput!): Startup!
 }
 
 type Query {
+  allStartups: [Startup!]!
   hello: String!
+  startupById(id: Int!): Startup!
+  startupsApply: [StartupsApply!]!
+  startupsApplyByCurrentUser: [StartupsApply!]!
+  startupsApplyById(id: String!): StartupsApply!
 }
 
 type RefreshTokenResponse {
@@ -43,11 +103,74 @@ type SignupResponse {
   userName: String!
 }
 
+type Startup {
+  Name: String!
+  closingDate: String!
+  confirmStatus: ConfirmStatusEnum!
+  createdAt: DateTime!
+  details: String!
+  email: String!
+  foundedOn: String!
+  id: String!
+  investmentMin: String!
+  investmentTarget: String!
+  isActive: Boolean!
+  isTrending: Boolean!
+  location: String!
+  modifiedAt: DateTime!
+  startupsApply: StartupsApply!
+  startupsApplyId: String!
+  subtitle: String!
+  summery: String!
+  user: User!
+  userId: String!
+  website: String!
+}
+
+type StartupsApply {
+  companyAddress: String!
+  companyName: String!
+  confirmStatus: ConfirmStatusEnum!
+  currentAudienceSize: String!
+  expectRaiseAmount: String!
+  hasProductInMarket: Boolean!
+  id: String!
+  industryType: IndustryTypeEnum!
+  isMakingMoney: Boolean!
+  pastProject: String!
+  startup: Startup!
+  summery: String!
+  totalRaisedUntilNow: String!
+  traction: String!
+  user: User!
+  userId: String!
+  website: String!
+  yourTitle: String!
+}
+
+input UpdateStartupInput {
+  Name: String
+  closingDate: String
+  details: String
+  email: String
+  foundedOn: String
+  id: String!
+  investmentMin: String
+  investmentTarget: String
+  location: String
+  startupsApplyId: String
+  subtitle: String
+  summery: String
+  website: String
+}
+
 type User {
+  appliedStartup: [StartupsApply!]
   email: String!
   firstName: String!
   id: String!
   isEmailVerified: Boolean!
   lastName: String!
   password: String!
+  startup: [Startup!]
 }

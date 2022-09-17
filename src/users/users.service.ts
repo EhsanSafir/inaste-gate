@@ -17,4 +17,8 @@ export class UsersService {
     await this.userRepository.save(user);
     return true;
   }
+
+  async findOneById(userId:string){
+  return this.userRepository.findOneByOrFail({id:userId})
+  }
 }
