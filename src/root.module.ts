@@ -5,6 +5,8 @@ import { validate } from "./common/validator/env.validation";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { MailerConfig } from "../config/mailer.config";
+import { UsersModule } from "./users/users.module";
+import { UtilsModule } from "./utils/utils.module";
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { MailerConfig } from "../config/mailer.config";
       imports: [ConfigModule],
       useClass: MailerConfig
     }),
+    UsersModule,
+    UtilsModule
   ],
   controllers: [],
   providers: []
