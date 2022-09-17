@@ -17,4 +17,4 @@ import { validate } from "./common/validator/env.validation";
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class RootModule {}
