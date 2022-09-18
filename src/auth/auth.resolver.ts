@@ -1,10 +1,10 @@
-import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { Args, Mutation, Query, Resolver, Subscription } from "@nestjs/graphql";
 import { AuthService } from "./auth.service";
 import { SignupAuthInput } from "./dto/signup-auth.input";
 import { LoginResponse } from "./dto/login-response";
 import { SignupResponse } from "./dto/signup-response";
 import { LoginInput } from "./dto/login-input";
-import { UseGuards } from "@nestjs/common";
+import { Inject, UseGuards } from "@nestjs/common";
 import { GqlAuthGuard } from "./gql-auth.guard";
 import { RefreshTokenResponse } from "./dto/refresh-token-response";
 import { JwtUtils } from "../utils/jwt.utils";
@@ -14,14 +14,18 @@ import { HostUrl } from "../common/decorator/host-url.decorator";
 import { CurrentUser } from "../common/decorator/current-user.decorator";
 import { TokenPayload } from "./types/token-payload.type";
 import { RefreshTokenArgs } from "./args/refresh-token.args";
+import { PubSubEngine } from "graphql-subscriptions";
 
 @Resolver(() => User)
 export class AuthResolver {
-  constructor(private readonly authService: AuthService, private jwtUtils: JwtUtils) {}
+  constructor(private readonly authService: AuthService, private jwtUtils: JwtUtils,
+              @Inject("PUB_SUB") private pubSub: PubSubEngine
+  ) {
+  }
 
   @Mutation(() => SignupResponse)
   @Public()
-  async signUp(@Args("signupAuthInput") signupAuthInput: SignupAuthInput, @HostUrl() hostUrl:string) {
+  async signUp(@Args("signupAuthInput") signupAuthInput: SignupAuthInput, @HostUrl() hostUrl: string) {
     return await this.authService.signUp(signupAuthInput, hostUrl);
   }
 
@@ -36,16 +40,23 @@ export class AuthResolver {
   @Mutation(() => RefreshTokenResponse)
   @Public()
   async refreshToken(@Args() args: RefreshTokenArgs) {
-    const payload : TokenPayload= await this.jwtUtils.verifyToken(args.token);
-    const accessToken = await this.authService.createAccessToken(payload.email,payload.userId);
+    const payload: TokenPayload = await this.jwtUtils.verifyToken(args.token);
+    const accessToken = await this.authService.createAccessToken(payload.email, payload.userId);
     return {
       accessToken
     };
   }
 
   @Query(() => String)
-  hello() {
+  async hello() {
+    await this.pubSub.publish("pongEvent", { 'pongEvent': "pingId" });
     return "hello";
+  }
+
+  @Subscription(returns => String)
+  @Public()
+  pongEvent() {
+    return this.pubSub.asyncIterator("pongEvent");
   }
 
 }

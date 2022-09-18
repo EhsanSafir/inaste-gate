@@ -170,6 +170,10 @@ type StartupsApply {
   yourTitle: String!
 }
 
+type Subscription {
+  pongEvent: String!
+}
+
 input UpdateInvestorInput {
   """Example field (placeholder)"""
   exampleField: Int

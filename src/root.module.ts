@@ -15,6 +15,7 @@ import { StartupsModule } from "./startups/startups.module";
 import { StartupsApplyModule } from "./startups-apply/startups-apply.module";
 import { InvestorModule } from "./investor/investor.module";
 
+
 @Module({
   imports: [
     ConfigModule.forRoot(
@@ -28,7 +29,10 @@ import { InvestorModule } from "./investor/investor.module";
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
-      sortSchema: true
+      sortSchema: true,
+      playground: true,
+      installSubscriptionHandlers: true,
+      // subscriptions:{}
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -49,7 +53,9 @@ import { InvestorModule } from "./investor/investor.module";
     InvestorModule
   ],
   controllers: [],
-  providers: [ ]
+  providers: [
+
+  ]
 })
 export class RootModule {
 }

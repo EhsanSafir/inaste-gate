@@ -11,6 +11,7 @@ import { JwtAuthGuard } from "./jwt-auth.guard";
 import { User } from "../users/entities/user.entity";
 import { IsConfirmEmailToken } from "./validator/confirm-maile-token.validator";
 import { IsValidRefreshToken } from "./validator/refresh-token.validator";
+import { PubSub } from "graphql-subscriptions";
 
 
 @Module({
@@ -20,7 +21,12 @@ import { IsValidRefreshToken } from "./validator/refresh-token.validator";
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
-    IsConfirmEmailToken,IsValidRefreshToken
+    IsConfirmEmailToken,IsValidRefreshToken,
+
+    {
+      provide: 'PUB_SUB',
+      useValue: new PubSub(),
+    },
 
   ],
   controllers: [AuthController],
