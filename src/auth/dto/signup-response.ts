@@ -13,9 +13,6 @@ export class SignupResponse {
   lastName: string;
 
   @Field(() => String)
-  userName: string;
-
-  @Field(() => String)
   email: string;
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);

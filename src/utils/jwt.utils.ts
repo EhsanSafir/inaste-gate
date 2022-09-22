@@ -22,6 +22,11 @@ export class JwtUtils {
     return await this.jwtService.verifyAsync(token, { ignoreExpiration: false });
   }
 
+  verifyToken(token: string){
+
+    return this.jwtService.verify(token, { ignoreExpiration: false });
+  }
+
   async signAccessToken(email: string, userId: string, expiresIn?: string) {
     expiresIn = expiresIn ?? await this.configService.get<string>("jwt.access_token_expiresIn");
     const tokenPayload = {
@@ -41,4 +46,16 @@ export class JwtUtils {
     };
     return await this.jwtService.signAsync(tokenPayload, { expiresIn });
   }
+
+
+  extractJwtFromBearerToken(authorizationHeader)  {
+    const AUTH_TYPE = "Bearer";
+    let authToken = null;
+    if (authorizationHeader.startsWith(`${AUTH_TYPE} `)) {
+      authToken = authorizationHeader.split(" ")[1];
+    } else {
+      throw new Error("Authorization Header  is not valid");
+    }
+    return authToken;
+  };
 }
