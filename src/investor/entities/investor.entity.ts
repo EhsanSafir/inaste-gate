@@ -28,22 +28,19 @@ export class Investor {
   @Column()
   totalAnnualIncome: number;
 
-  @Field(() => String)
-  @Column()
-  investContext: number;
 
 
-  @Field(() => String)
+  @Field(() => Int)
   @Column()
   employCount: number;
 
   @Field(() => String)
   @Column()
-  organizationalChat: number;
+  organizationalChat: string;
 
   @Field(() => String)
   @Column()
-  previewExp: number;
+  previewExp: string;
 
 
   @Field(() => ConfirmStatusEnum)
@@ -53,7 +50,13 @@ export class Investor {
     default: ConfirmStatusEnum.PENDING
   })
   confirmStatus: String;
+
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
+
+
+  @Field(() => String)
+  @Column()
+  userId: string;
 }

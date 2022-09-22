@@ -9,8 +9,14 @@ enum ConfirmStatusEnum {
 }
 
 input CreateInvestorInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  age: Int!
+  employCount: Int!
+  investmentEmail: String!
+  investmentField: String!
+  organizationalChat: String!
+  previewExp: String!
+  totalAnnualIncome: Int!
+  userId: String
 }
 
 input CreateMessageInput {
@@ -68,14 +74,14 @@ enum IndustryTypeEnum {
 type Investor {
   age: Int!
   confirmStatus: ConfirmStatusEnum!
-  employCount: String!
+  employCount: Int!
   id: String!
-  investContext: String!
   investmentEmail: String!
   investmentField: String!
   organizationalChat: String!
   previewExp: String!
   totalAnnualIncome: Int!
+  userId: String!
 }
 
 input LoginInput {
@@ -101,23 +107,22 @@ type Message {
 }
 
 type Mutation {
-  createInvestor(createInvestorInput: CreateInvestorInput!): Investor!
+  createInvestorProfile(createInvestorInput: CreateInvestorInput!): Investor!
   createMessage(createMessageInput: CreateMessageInput!): Message!
   createStartup(createStartupInput: CreateStartupInput!): Startup!
   createStartupsApply(createStartupsApplyInput: CreateStartupsApplyInput!): StartupsApply!
   inactivateStartup(id: String!): Startup!
   logIn(loginInput: LoginInput!): LoginResponse!
   refreshToken(token: String!): RefreshTokenResponse!
-  removeInvestor(id: Int!): Investor!
   signUp(signupAuthInput: SignupAuthInput!): SignupResponse!
-  updateInvestor(updateInvestorInput: UpdateInvestorInput!): Investor!
   updateStartup(updateStartupInput: UpdateStartupInput!): Startup!
 }
 
 type Query {
   allStartups: [Startup!]!
-  hello: String!
-  investor(id: Int!): Investor!
+  hasInvestorProfile: Boolean!
+  investorProfile: Investor!
+  me: User!
   message: [Message!]!
   startupById(id: Int!): Startup!
   startupsApply: [StartupsApply!]!
@@ -191,13 +196,6 @@ type StartupsApply {
 
 type Subscription {
   messageEvent: Message!
-  pongEvent: String!
-}
-
-input UpdateInvestorInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
 
 input UpdateStartupInput {

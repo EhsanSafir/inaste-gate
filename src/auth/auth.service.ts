@@ -80,4 +80,8 @@ export class AuthService {
     await this.userRepository.save(user);
     return true;
   }
+
+  async userById(userID: string) {
+    return this.userRepository.findOneByOrFail({id:userID})
+  }
 }

@@ -15,11 +15,11 @@ import { TokenPayload } from "./types/token-payload.type";
 import { RefreshTokenArgs } from "./args/refresh-token.args";
 import { PubSubEngine } from "graphql-subscriptions";
 import { JwtUtils } from "../common/utils/jwt.utils";
+import { UserPayloadTypes } from "../users/types/user-payload.types";
 
 @Resolver(() => User)
 export class AuthResolver {
   constructor(private readonly authService: AuthService, private jwtUtils: JwtUtils,
-              @Inject("PUB_SUB") private pubSub: PubSubEngine
   ) {
   }
 
@@ -47,16 +47,10 @@ export class AuthResolver {
     };
   }
 
-  @Query(() => String)
-  async hello() {
-    await this.pubSub.publish("pongEvent", { 'pongEvent': "pingId" });
-    return "hello";
+  @Query(() => User)
+  async me(@CurrentUser() currentUser:UserPayloadTypes) {
+    return  this.authService.userById(currentUser.userId)
   }
 
-  @Subscription(returns => String)
-  @Public()
-  pongEvent() {
-    return this.pubSub.asyncIterator("pongEvent");
-  }
 
 }
