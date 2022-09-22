@@ -12,7 +12,7 @@ export class IsValidRefreshToken implements ValidatorConstraintInterface {
 
   async validate(text: string) {
     try {
-      const result :TokenPayload= await this.jwtUtils.verifyToken(text)
+      const result :TokenPayload= await this.jwtUtils.verifyAsyncToken(text)
       return result.sub === TokensType.REFRESH_TOKEN;
 
     }

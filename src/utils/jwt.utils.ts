@@ -17,7 +17,7 @@ export class JwtUtils {
     return await this.jwtService.signAsync(tokenPayload, { expiresIn });
   }
 
-  async verifyToken(token: string) {
+  async verifyAsyncToken(token: string) {
 
     return await this.jwtService.verifyAsync(token, { ignoreExpiration: false });
   }

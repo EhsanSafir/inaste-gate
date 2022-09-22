@@ -40,7 +40,7 @@ export class AuthResolver {
   @Mutation(() => RefreshTokenResponse)
   @Public()
   async refreshToken(@Args() args: RefreshTokenArgs) {
-    const payload: TokenPayload = await this.jwtUtils.verifyToken(args.token);
+    const payload: TokenPayload = await this.jwtUtils.verifyAsyncToken(args.token);
     const accessToken = await this.authService.createAccessToken(payload.email, payload.userId);
     return {
       accessToken

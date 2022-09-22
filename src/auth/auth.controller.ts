@@ -12,7 +12,7 @@ export class AuthController {
   @UsePipes(ValidationPipe)
   @Public()
   async confirmEmail(@Query() queryParams:ConfirmTokenCreate) : Promise<boolean>{
-    const payload : TokenPayload= await this.jwtUtils.verifyToken(queryParams.token) // TODO user toke only once for verification
+    const payload : TokenPayload= await this.jwtUtils.verifyAsyncToken(queryParams.token) // TODO user toke only once for verification
     return await this.authService.activeEmail(payload.email)
   }
 }

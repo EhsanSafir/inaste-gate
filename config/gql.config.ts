@@ -30,7 +30,7 @@ export class GqlConfigService implements GqlOptionsFactory {
           onConnect: (connectionParams) => {
             const authorizationHeader = connectionParams.Authorization;
             const authToken = extractJwtFromBearerToken(authorizationHeader);
-            this.jwtUtils.verifyToken()
+            // this.jwtUtils.verifyAsyncToken()
             // if (!isValid(authToken)) {
             //   throw new Error('Token is not valid');
             // }

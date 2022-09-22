@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": false,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "allowUnreachableCode": true
   }
 }
