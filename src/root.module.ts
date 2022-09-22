@@ -28,7 +28,6 @@ import { MessageModule } from './message/message.module';
       }
     ),
     GraphQLModule.forRootAsync({
-      // imports: [ConfigModule],
       useClass: GqlConfigService,
       driver: ApolloDriver,
     }),

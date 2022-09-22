@@ -23,10 +23,17 @@ export class GqlConfigService implements GqlOptionsFactory {
             const authToken = this.jwtUtils.extractJwtFromBearerToken(authorizationHeader);
             const payload = this.jwtUtils.verifyToken(authToken)
             const user = (({ email, userId }) => ({ email, userId }))(payload);
-            return { user };
+            return { user ,
+            };
           }
         }
-      }
+      },
+      context: ({ req, res, payload, connection }) => ({
+        req,
+        res,
+        payload,
+        connection,
+      }),
     };
   }
 }

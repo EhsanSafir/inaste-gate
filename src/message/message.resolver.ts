@@ -17,8 +17,8 @@ export class MessageResolver {
 
   @Mutation(() => Message)
   async createMessage(@Args("createMessageInput") createMessageInput: CreateMessageInput,@CurrentUser() currentUser:UserPayloadTypes) {
-    createMessageInput.senderId = currentUser.userId
-    const messageInstance = await  this.messageService.create(createMessageInput,currentUser.userId);
+    createMessageInput.senderId = currentUser.userId  // make readonly senderId
+    const messageInstance = await  this.messageService.create(createMessageInput);
     await this.pubSub.publish("messageEvent", { 'messageEvent': messageInstance});
     return messageInstance;
   }
@@ -30,7 +30,13 @@ export class MessageResolver {
   }
 
 
-  @Subscription(returns => Message)
+  @Subscription(returns => Message,
+    {
+      filter: (payload, variables,context) =>{
+        console.log(context.user.userId )
+        return context.user.userId === payload.messageEvent.receiverId
+      }
+    })
   @Public()
   messageEvent() {
     return this.pubSub.asyncIterator("messageEvent");
