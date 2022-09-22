@@ -7,13 +7,13 @@ import { MailerModule } from "@nestjs-modules/mailer";
 import { MailerConfig } from "../config/mailer.config";
 import { UsersModule } from "./users/users.module";
 import { UtilsModule } from "./utils/utils.module";
-import { join } from "path";
 import { GraphQLModule } from "@nestjs/graphql";
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { AuthModule } from "./auth/auth.module";
 import { StartupsModule } from "./startups/startups.module";
 import { StartupsApplyModule } from "./startups-apply/startups-apply.module";
 import { InvestorModule } from "./investor/investor.module";
+import { GqlConfigService } from "../config/gql.config";
+import { ApolloDriver } from "@nestjs/apollo";
 
 
 @Module({
@@ -26,13 +26,10 @@ import { InvestorModule } from "./investor/investor.module";
         validate
       }
     ),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRootAsync({
+      // imports: [ConfigModule],
+      useClass: GqlConfigService,
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
-      sortSchema: true,
-      playground: true,
-      installSubscriptionHandlers: true,
-      // subscriptions:{}
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

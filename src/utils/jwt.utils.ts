@@ -18,6 +18,7 @@ export class JwtUtils {
   }
 
   async verifyToken(token: string) {
+
     return await this.jwtService.verifyAsync(token, { ignoreExpiration: false });
   }
 

@@ -20,6 +20,6 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "allowUnreachableCode": false
+    "allowUnreachableCode": true
   }
 }
