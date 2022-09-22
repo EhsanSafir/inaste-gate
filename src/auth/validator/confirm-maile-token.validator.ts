@@ -2,7 +2,7 @@ import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface 
 import { Injectable } from "@nestjs/common";
 import { TokenPayload } from "../types/token-payload.type";
 import { TokensType } from "../../common/enums/jwt.enum";
-import { JwtUtils } from "../../utils/jwt.utils";
+import { JwtUtils } from "../../common/utils/jwt.utils";
 
 @ValidatorConstraint({ name: "IsConfirmEmailToken", async: true })
 @Injectable()

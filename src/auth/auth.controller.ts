@@ -1,9 +1,9 @@
 import { Controller, Get, Query, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ConfirmTokenCreate } from "./dto/confirm-token.create";
-import { JwtUtils } from "../utils/jwt.utils";
 import { AuthService } from "./auth.service";
 import { Public } from "../common/decorator/public.decorator";
 import { TokenPayload } from "./types/token-payload.type";
+import { JwtUtils } from "../common/utils/jwt.utils";
 
 @Controller("auth")
 export class AuthController {

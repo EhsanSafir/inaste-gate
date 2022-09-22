@@ -7,7 +7,6 @@ import { LoginInput } from "./dto/login-input";
 import { Inject, UseGuards } from "@nestjs/common";
 import { GqlAuthGuard } from "./gql-auth.guard";
 import { RefreshTokenResponse } from "./dto/refresh-token-response";
-import { JwtUtils } from "../utils/jwt.utils";
 import { User } from "../users/entities/user.entity";
 import { Public } from "../common/decorator/public.decorator";
 import { HostUrl } from "../common/decorator/host-url.decorator";
@@ -15,6 +14,7 @@ import { CurrentUser } from "../common/decorator/current-user.decorator";
 import { TokenPayload } from "./types/token-payload.type";
 import { RefreshTokenArgs } from "./args/refresh-token.args";
 import { PubSubEngine } from "graphql-subscriptions";
+import { JwtUtils } from "../common/utils/jwt.utils";
 
 @Resolver(() => User)
 export class AuthResolver {

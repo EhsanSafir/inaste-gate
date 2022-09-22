@@ -6,7 +6,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { MailerConfig } from "../config/mailer.config";
 import { UsersModule } from "./users/users.module";
-import { UtilsModule } from "./utils/utils.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import { AuthModule } from "./auth/auth.module";
 import { StartupsModule } from "./startups/startups.module";
@@ -15,6 +14,7 @@ import { InvestorModule } from "./investor/investor.module";
 import { GqlConfigService } from "../config/gql.config";
 import { ApolloDriver } from "@nestjs/apollo";
 import { MessageModule } from './message/message.module';
+import { CommonModule } from "./common/common.module";
 
 
 @Module({
@@ -43,7 +43,7 @@ import { MessageModule } from './message/message.module';
       useClass: MailerConfig
     }),
     UsersModule,
-    UtilsModule,
+    CommonModule,
     AuthModule,
     StartupsModule,
     StartupsApplyModule,

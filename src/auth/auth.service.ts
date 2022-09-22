@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { SignupAuthInput } from "./dto/signup-auth.input";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { PasswordUtils } from "../utils/password.utils";
 import { MailerService } from "@nestjs-modules/mailer";
-import { JwtUtils } from "../utils/jwt.utils";
 import { User } from "../users/entities/user.entity";
+import { PasswordUtils } from "../common/utils/password.utils";
+import { JwtUtils } from "../common/utils/jwt.utils";
 
 @Injectable()
 export class AuthService {

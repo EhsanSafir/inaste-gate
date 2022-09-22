@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { GqlOptionsFactory } from "@nestjs/graphql";
 import {  ApolloDriverConfig } from "@nestjs/apollo";
 import { join } from "path";
-import { JwtUtils } from "../src/utils/jwt.utils";
+import { JwtUtils } from "../src/common/utils/jwt.utils";
 
 
 
