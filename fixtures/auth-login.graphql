@@ -1,0 +1,16 @@
+mutation{
+    logIn(loginInput:{
+        email:"setic44753@bongcs.com"
+        password:"Apple123"
+    }){
+        user{
+            id
+            firstName
+            lastName
+            email
+        }
+        accessToken
+        refreshToken
+
+    }
+}

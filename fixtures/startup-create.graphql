@@ -1,0 +1,30 @@
+mutation{
+    createStartup(createStartupInput:{
+        Name:"Azure Printed Homes"
+        details:"Azure is fundamentally changing the construction industry by leveraging 3D printing technology using recycled polymers to prefabricate modern backyard studios, ADUs and homes faster and more affordably than ever before."
+        foundedOn:"2022"
+        email:"Azure@email.com"
+        investmentMin:"3000$"
+        location:"	Canada,Cambridge,Ontario"
+        investmentTarget:"250000$"
+        startupsApplyId:"ce34007a-752b-4d19-a7e8-1544cc72bf1c"
+        summery:"Fabrication will take place in the Azure factory, improving precision & quality. This controlled environment will allow Azure to deliver projects faster than have been currently possible."
+        subtitle:"3D printed homes made from recycled materials—fast, affordable, and sustainable"
+        website:"http://www.google.com"
+        closingDate:"2022/01/11"
+    }){
+        id
+        Name
+        details
+        foundedOn
+        email
+        investmentMin
+        location
+        investmentTarget
+        startupsApplyId
+        summery
+        subtitle
+        website
+        closingDate
+    }
+}

@@ -1,0 +1,16 @@
+ {
+   "name": "Invest Gate",
+   "schemaPath": "src/schema.gql",
+   "extensions": {
+     "endpoints": {
+       "Invest Gate GraphQL Endpoint": {
+         "url": "http://localhost:3000/graphql",
+         "headers": {
+           "user-agent": "JS GraphQL",
+           "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldGljNDQ3NTNAYm9uZ2NzLmNvbSIsInVzZXJJZCI6IjVhMjhmMjkwLTdmOTUtNGE5Ni05M2YyLWU4NzQ2NjdiZWU1YyIsInN1YiI6ImFjY2Vzc190b2tlbiIsImlhdCI6MTY2MzkxNjE2MCwiZXhwIjoxNjYzOTg4MTYwfQ.LlKzEDLccxPKRD426wPE-Uj-E6okGrhUot1X5Wz7JFg"
+         },
+         "introspect": true
+       }
+     }
+   }
+ }

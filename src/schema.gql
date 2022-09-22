@@ -71,6 +71,15 @@ enum IndustryTypeEnum {
   SERVICE
 }
 
+type InvestedStartup {
+  createdAt: DateTime!
+  id: String!
+  investor: User!
+  investorId: String!
+  startup: Startup!
+  startupId: String!
+}
+
 type Investor {
   age: Int!
   confirmStatus: ConfirmStatusEnum!
@@ -107,10 +116,11 @@ type Message {
 }
 
 type Mutation {
+  createInvestorParticipant(startup: String!): InvestedStartup!
   createInvestorProfile(createInvestorInput: CreateInvestorInput!): Investor!
   createMessage(createMessageInput: CreateMessageInput!): Message!
   createStartup(createStartupInput: CreateStartupInput!): Startup!
-  createStartupsApply(createStartupsApplyInput: CreateStartupsApplyInput!): StartupsApply!
+  createStartupApply(createStartupsApplyInput: CreateStartupsApplyInput!): StartupsApply!
   inactivateStartup(id: String!): Startup!
   logIn(loginInput: LoginInput!): LoginResponse!
   refreshToken(token: String!): RefreshTokenResponse!
@@ -120,13 +130,13 @@ type Mutation {
 
 type Query {
   allStartups: [Startup!]!
+  allStartupsByCurrentUser: [Startup!]!
   hasInvestorProfile: Boolean!
   investorProfile: Investor!
   me: User!
   message: [Message!]!
+  startupApplyByCurrentUser: [StartupsApply!]!
   startupById(id: Int!): Startup!
-  startupsApply: [StartupsApply!]!
-  startupsApplyByCurrentUser: [StartupsApply!]!
   startupsApplyById(id: String!): StartupsApply!
 }
 

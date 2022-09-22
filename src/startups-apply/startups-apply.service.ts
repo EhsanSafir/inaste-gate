@@ -28,8 +28,9 @@ export class StartupsApplyService {
     return this.startupsApplyRepository.findBy({userId})
   }
 
-  findOne(id: string) {
-    return  this.startupsApplyRepository.findOneByOrFail({id})
+  async findOne(id: string,userId:string) {
+    // console.log(this.startupsApplyRepository.findOneByOrFail({id,userId}))
+    return  await this.startupsApplyRepository.findOneByOrFail({id,userId})
   }
 
   // update(id: number, updateStartupsApplyInput: UpdateStartupsApplyInput) {

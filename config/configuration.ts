@@ -1,15 +1,5 @@
 import * as path from "path";
 
-export interface DatabaseConfig {
-  type: string,
-  host: string,
-  port: number,
-  username: string
-  password: string,
-  database: string,
-  synchronize: boolean,
-  entities: string[],
-}
 
 export default () => (
   {

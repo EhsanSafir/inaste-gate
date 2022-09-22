@@ -62,7 +62,7 @@ export class Startup {
 
   @Field(() => String)
   @Column()
-  foundedOn: string;
+  foundedOn: string; // crete date field  or remove
 
   @Field(() => String)
   @Column()
@@ -93,12 +93,12 @@ export class Startup {
 
   @Field(() => String)
   @Column()
-  closingDate: string;
+  closingDate: string; // TODO create date field
 
 
   @Field(() => User)
   @ManyToOne(type => User, user => user.startup)
-  user: User[];
+  user: User;
 
   @Field(() => String)
   @Column(

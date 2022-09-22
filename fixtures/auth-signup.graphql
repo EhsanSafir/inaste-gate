@@ -1,0 +1,13 @@
+mutation{
+    signUp(signupAuthInput:{
+        firstName:"testFirstName"
+        lastName:"testFirstName"
+        email:"test@bongcs.com"
+        password:"Apple123"
+    }){
+        id
+        firstName
+        lastName
+        email
+    }
+}

@@ -1,0 +1,32 @@
+mutation{
+    createStartupApply(createStartupsApplyInput:{
+        companyName:"Azure Printed Homes"
+        companyAddress:"dasd"
+        currentAudienceSize:"500k"
+        traction:"Since 2019, we have invested over $1,000,000 into engineering and research to design a process for 3D printing homes using recycled materials. While designing the new method, we completed over 40 houses, ADUs, and backyard studios—increasing revenue by 195% from 2019 to 2020, and by 260% from 2020 to 2021. Since launching our website in early January 2022, we have received paid customer deposits for units valued at over $3,000,000."
+        expectRaiseAmount:"30000$"
+        hasProductInMarket:true
+        industryType:"media"
+        isMakingMoney:true
+        pastProject:"no"
+        summery:"There is a global shortage of housing. The United States alone needs an estimated 5.24 million housing units, and that number has been growing."
+        totalRaisedUntilNow:"7800$"
+        website:"https://www.google.com"
+        yourTitle:"Co-Funder"
+    }){
+        id
+        companyName
+        companyAddress
+        currentAudienceSize
+        traction
+        expectRaiseAmount
+        hasProductInMarket
+        industryType
+        isMakingMoney
+        pastProject
+        summery
+        totalRaisedUntilNow
+        website
+        yourTitle
+    }
+}

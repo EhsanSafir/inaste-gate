@@ -28,8 +28,8 @@ export class StartupsService {
     return this.startupRepository.findOneByOrFail({ id });
   }
 
-  async update(id: string, updateStartupInput: UpdateStartupInput) {
-    await this.startupRepository.update({ id }, updateStartupInput)
+  async update(id: string,userId, updateStartupInput: UpdateStartupInput) {
+    await this.startupRepository.update({ id ,userId}, updateStartupInput)
     return this.findOne(id)
   }
 
