@@ -13,6 +13,13 @@ input CreateInvestorInput {
   exampleField: Int!
 }
 
+input CreateMessageInput {
+  body: String!
+  receiverId: String!
+  senderId: String
+  subject: String!
+}
+
 input CreateStartupInput {
   Name: String!
   closingDate: String!
@@ -82,8 +89,20 @@ type LoginResponse {
   user: User!
 }
 
+type Message {
+  body: String!
+  createdAt: DateTime!
+  id: String!
+  receiver: User!
+  receiverId: String!
+  sender: User!
+  senderId: String!
+  subject: String!
+}
+
 type Mutation {
   createInvestor(createInvestorInput: CreateInvestorInput!): Investor!
+  createMessage(createMessageInput: CreateMessageInput!): Message!
   createStartup(createStartupInput: CreateStartupInput!): Startup!
   createStartupsApply(createStartupsApplyInput: CreateStartupsApplyInput!): StartupsApply!
   inactivateStartup(id: String!): Startup!
@@ -99,6 +118,7 @@ type Query {
   allStartups: [Startup!]!
   hello: String!
   investor(id: Int!): Investor!
+  message: [Message!]!
   startupById(id: Int!): Startup!
   startupsApply: [StartupsApply!]!
   startupsApplyByCurrentUser: [StartupsApply!]!
@@ -122,7 +142,6 @@ type SignupResponse {
   firstName: String!
   id: String!
   lastName: String!
-  userName: String!
 }
 
 type Startup {
@@ -171,6 +190,7 @@ type StartupsApply {
 }
 
 type Subscription {
+  messageEvent: Message!
   pongEvent: String!
 }
 

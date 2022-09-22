@@ -14,6 +14,7 @@ import { StartupsApplyModule } from "./startups-apply/startups-apply.module";
 import { InvestorModule } from "./investor/investor.module";
 import { GqlConfigService } from "../config/gql.config";
 import { ApolloDriver } from "@nestjs/apollo";
+import { MessageModule } from './message/message.module';
 
 
 @Module({
@@ -47,7 +48,8 @@ import { ApolloDriver } from "@nestjs/apollo";
     AuthModule,
     StartupsModule,
     StartupsApplyModule,
-    InvestorModule
+    InvestorModule,
+    MessageModule
   ],
   controllers: [],
   providers: [
