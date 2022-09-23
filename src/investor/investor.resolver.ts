@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { InvestorService } from './investor.service';
 import { Investor } from './entities/investor.entity';
 import { CreateInvestorInput } from './dto/create-investor.input';

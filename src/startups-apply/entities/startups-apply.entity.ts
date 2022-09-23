@@ -1,5 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ConfirmStatusEnum } from "../../common/enums/confirm-status.enum";
 import { IndustryTypeEnum } from "../../common/enums/industry-type.enum";
 import { User } from "../../users/entities/user.entity";
@@ -13,16 +13,16 @@ export class StartupsApply {
   id: string;
 
   @Field(() => String)
-  @Column({ type: "text" })
-  companyName: String;
-
-  @Field(() => String)
-  @Column({ type: "text" })
-  yourTitle: String;
+  @Column({ type: "text" ,nullable:true})
+  startupName: String;
 
   @Field(() => String)
   @Column({ type: "text" })
   website: String;
+
+  @Field(() => String)
+  @Column({ type: "text" })
+  yourTitle: String;
 
   @Field(() => IndustryTypeEnum)
   @Column({ type: "text" })
@@ -85,4 +85,9 @@ export class StartupsApply {
   @Field(() => Startup)
   @OneToOne(type => Startup,Startup=>Startup.startupsApply)
   startup?:Startup
+
+  @Field(() => Date)
+  @CreateDateColumn()
+  createdAt: Date;  // TOD create date time field // TOD auto updated created time // TOD auto updated modified  time
+
 }

@@ -24,13 +24,13 @@ export class InvestorService {
     return profileInstance;
   }
 
-  async hasInvestorProfile(userId) {
+  async hasInvestorProfile(userId:string) {
     const profileInstance = await this.investorRepository.findOneBy({ userId });
     console.log(profileInstance);
     return !!profileInstance;
   }
 
-  async createInvestorParticipant(startupId: string, investorId) {
+  async createInvestorParticipant(startupId: string, investorId:string) {
     return this.investedStartupRepository.save({ startupId, investorId });
   }
 }

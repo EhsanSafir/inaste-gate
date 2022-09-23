@@ -2,7 +2,7 @@ mutation{
     signUp(signupAuthInput:{
         firstName:"testFirstName"
         lastName:"testFirstName"
-        email:"test@bongcs.com"
+        email:"ehsansafir@outlook.com"
         password:"Apple123"
     }){
         id

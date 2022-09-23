@@ -1,36 +1,9 @@
-import { InputType, Int, Field } from "@nestjs/graphql";
-import { ConfirmStatusEnum } from "../../common/enums/confirm-status.enum";
+import { InputType, Field, OmitType } from "@nestjs/graphql";
+import { Investor } from "../entities/investor.entity";
 
 @InputType()
-export class CreateInvestorInput {
-
-  @Field(() => Int)
-  age: number;
-
-  @Field(() => String)
-  investmentEmail: String;
-
-
-  @Field(() => String)
-  investmentField: String;
-
-  // TODO investment field category
-  @Field(() => Int)
-  totalAnnualIncome: number;
-
-
-
-  @Field(() => Int)
-  employCount: number;
-
-  @Field(() => String)
-  organizationalChat: string;
-
-  @Field(() => String)
-  previewExp: string;
-
-
+export class CreateInvestorInput extends OmitType(Investor, ["id",'user','confirmStatus'] as const, InputType) {
 
   @Field(() => String,{nullable:true})
-  userId?: string;
+  userId: string;
 }

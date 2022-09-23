@@ -13,13 +13,13 @@
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,  // TODO clear all nullable value
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
-    "noUnusedLocals": false,
-    "allowUnreachableCode": true
+    "noUnusedLocals": true,
+    "allowUnreachableCode": false
   }
 }

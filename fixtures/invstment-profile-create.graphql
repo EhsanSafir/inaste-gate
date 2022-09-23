@@ -2,7 +2,7 @@ mutation{
     createInvestorProfile(createInvestorInput:{
         age:20
         employCount:50
-        investmentField:"Technalogy"
+        investmentField:"Technology"
         investmentEmail:"ehsan@gmail.com"
         organizationalChat:"ahmad as ceo , karim as co-founder"
         previewExp:"no example"

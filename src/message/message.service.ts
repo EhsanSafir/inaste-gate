@@ -16,11 +16,11 @@ export class MessageService {
     return this.messageRepository.save(messageInstance)
   }
 
-  findByUser(userId) {
+  findByUser(userId:string) {
     return this.messageRepository.findBy({receiverId:userId})
   }
 
-  findOwnerUser(userId) {
+  findOwnerUser(userId:string) {
     return  this.userService.findOneById(userId)
   }
 

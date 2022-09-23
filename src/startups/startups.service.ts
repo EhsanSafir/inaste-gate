@@ -28,7 +28,7 @@ export class StartupsService {
     return this.startupRepository.findOneByOrFail({ id });
   }
 
-  async update(id: string,userId, updateStartupInput: UpdateStartupInput) {
+  async update(id: string,userId:string, updateStartupInput: UpdateStartupInput) {
     await this.startupRepository.update({ id ,userId}, updateStartupInput)
     return this.findOne(id)
   }

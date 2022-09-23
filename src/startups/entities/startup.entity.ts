@@ -43,13 +43,10 @@ export class Startup {
 
 
   @Field(() => String)
-  @Column()
-  Name: string;
+  @Column({nullable:true})
+  startupName: string;
 
 
-  @Field(() => String)
-  @Column()
-  subtitle: string;
 
   @Field(() => String)
   @Column()
@@ -60,9 +57,9 @@ export class Startup {
   @Column()
   details: string;
 
-  @Field(() => String)
-  @Column()
-  foundedOn: string; // crete date field  or remove
+  @Field(() => Date)
+  @Column({nullable:true})
+  foundedOn: Date; // crete date field  or remove
 
   @Field(() => String)
   @Column()
@@ -91,9 +88,9 @@ export class Startup {
   isActive: boolean;
 
 
-  @Field(() => String)
-  @Column()
-  closingDate: string; // TODO create date field
+  @Field(() => Date)
+  @Column({nullable:true})
+  closingDate: Date; // TODO create date field
 
 
   @Field(() => User)
@@ -117,3 +114,4 @@ export class Startup {
   )
   startupsApplyId: string;
 }
+ // TODO remove unnecessary fields from entity

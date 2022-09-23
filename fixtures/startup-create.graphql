@@ -11,7 +11,7 @@ mutation{
         summery:"Fabrication will take place in the Azure factory, improving precision & quality. This controlled environment will allow Azure to deliver projects faster than have been currently possible."
         subtitle:"3D printed homes made from recycled materials—fast, affordable, and sustainable"
         website:"http://www.google.com"
-        closingDate:"2022/01/11"
+        closingDate:"2022-01-11 12:02:02"
     }){
         id
         Name

@@ -12,13 +12,16 @@ export class GqlConfigService implements GqlOptionsFactory {
   }
   createGqlOptions(): ApolloDriverConfig {
     return {
+      buildSchemaOptions: {
+        dateScalarMode: 'timestamp',
+      },
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
       sortSchema: true,
       playground: true,
       installSubscriptionHandlers: true,
       subscriptions: {
         "subscriptions-transport-ws": {
-          onConnect: (connectionParams) => {
+          onConnect: (connectionParams:any) => {
             const authorizationHeader = connectionParams.Authorization;
             const authToken = this.jwtUtils.extractJwtFromBearerToken(authorizationHeader);
             const payload = this.jwtUtils.verifyToken(authToken)

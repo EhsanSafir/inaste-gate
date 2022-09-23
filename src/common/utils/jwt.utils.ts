@@ -48,7 +48,7 @@ export class JwtUtils {
   }
 
 
-  extractJwtFromBearerToken(authorizationHeader)  {
+  extractJwtFromBearerToken(authorizationHeader:string)  {
     const AUTH_TYPE = "Bearer";
     let authToken = null;
     if (authorizationHeader.startsWith(`${AUTH_TYPE} `)) {

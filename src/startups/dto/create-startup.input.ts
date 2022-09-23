@@ -1,49 +1,13 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, OmitType } from "@nestjs/graphql";
+import { Startup } from "../entities/startup.entity";
+import { Column } from "typeorm";
 
 @InputType()
-export class CreateStartupInput {
-
-
-
-  @Field(() => String)
-  Name: string;
-
-
-  @Field(() => String)
-  subtitle: string;
-
-  @Field(() => String)
-  summery: string;
-
-
-  @Field(() => String)
-  details: string;
-
-  @Field(() => String)
-  foundedOn: string;
-
-  @Field(() => String)
-  website: string;
-
-  @Field(() => String)
-  email: string;
-
-  @Field(() => String)
-  location: string;
-
-
-  @Field(() => String)
-  investmentMin: string;
-
-
-  @Field(() => String)
-  investmentTarget: string;
-
-
-  @Field(() => String)
-  closingDate: string;
-   // TODO updated closing-data field `s type
-  @Field(() => String)
-  startupsApplyId: string;
+export class CreateStartupInput extends OmitType(Startup, ["id",'confirmStatus','createdAt','modifiedAt','user','startupsApply','isActive','isTrending'] as const, InputType) {
+  @Field(() => String,{nullable:true})
+  @Column(
+    {nullable:true}
+  )
+  userId:string
 
 }

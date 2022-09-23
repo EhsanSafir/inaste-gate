@@ -27,40 +27,36 @@ input CreateMessageInput {
 }
 
 input CreateStartupInput {
-  Name: String!
-  closingDate: String!
+  closingDate: Timestamp!
   details: String!
   email: String!
-  foundedOn: String!
+  foundedOn: Timestamp!
   investmentMin: String!
   investmentTarget: String!
   location: String!
+  startupName: String!
   startupsApplyId: String!
-  subtitle: String!
   summery: String!
+  userId: String
   website: String!
 }
 
 input CreateStartupsApplyInput {
   companyAddress: String!
-  companyName: String!
   currentAudienceSize: String!
   expectRaiseAmount: String!
   hasProductInMarket: Boolean!
-  industryType: String!
+  industryType: IndustryTypeEnum!
   isMakingMoney: Boolean!
   pastProject: String!
+  startupName: String!
   summery: String!
   totalRaisedUntilNow: String!
   traction: String!
+  userId: String
   website: String!
   yourTitle: String!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 enum IndustryTypeEnum {
   ENERGY
@@ -72,7 +68,7 @@ enum IndustryTypeEnum {
 }
 
 type InvestedStartup {
-  createdAt: DateTime!
+  createdAt: Timestamp!
   id: String!
   investor: User!
   investorId: String!
@@ -100,13 +96,13 @@ input LoginInput {
 
 type LoginResponse {
   accessToken: String!
-  refreshToken: String!
+  refreshToken: String
   user: User!
 }
 
 type Message {
   body: String!
-  createdAt: DateTime!
+  createdAt: Timestamp!
   id: String!
   receiver: User!
   receiverId: String!
@@ -160,23 +156,22 @@ type SignupResponse {
 }
 
 type Startup {
-  Name: String!
-  closingDate: String!
+  closingDate: Timestamp!
   confirmStatus: ConfirmStatusEnum!
-  createdAt: DateTime!
+  createdAt: Timestamp!
   details: String!
   email: String!
-  foundedOn: String!
+  foundedOn: Timestamp!
   id: String!
   investmentMin: String!
   investmentTarget: String!
   isActive: Boolean!
   isTrending: Boolean!
   location: String!
-  modifiedAt: DateTime!
+  modifiedAt: Timestamp!
+  startupName: String!
   startupsApply: StartupsApply!
   startupsApplyId: String!
-  subtitle: String!
   summery: String!
   user: User!
   userId: String!
@@ -185,8 +180,8 @@ type Startup {
 
 type StartupsApply {
   companyAddress: String!
-  companyName: String!
   confirmStatus: ConfirmStatusEnum!
+  createdAt: Timestamp!
   currentAudienceSize: String!
   expectRaiseAmount: String!
   hasProductInMarket: Boolean!
@@ -195,6 +190,7 @@ type StartupsApply {
   isMakingMoney: Boolean!
   pastProject: String!
   startup: Startup!
+  startupName: String!
   summery: String!
   totalRaisedUntilNow: String!
   traction: String!
@@ -208,19 +204,24 @@ type Subscription {
   messageEvent: Message!
 }
 
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
 input UpdateStartupInput {
-  Name: String
-  closingDate: String
+  closingDate: Timestamp
   details: String
   email: String
-  foundedOn: String
+  foundedOn: Timestamp
   id: String!
   investmentMin: String
   investmentTarget: String
   location: String
+  startupName: String
   startupsApplyId: String
-  subtitle: String
   summery: String
+  userId: String
   website: String
 }
 

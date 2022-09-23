@@ -5,7 +5,7 @@ import { Startup } from "../../startups/entities/startup.entity";
 
 @ObjectType()
 @Entity()
-// @Unique("investor_unique_participant", ["investor", "startup"]) //   //TODO unique together : investor and startup
+@Unique("investor_unique_participant", ["investor", "startup"])
 export class InvestedStartup {
   @Field(() => String)
   @PrimaryGeneratedColumn("uuid")

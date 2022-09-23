@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, Subscription, ResolveField, Parent } from "@nestjs/graphql";
+import { Resolver, Query, Mutation, Args, Subscription, ResolveField, Parent } from "@nestjs/graphql";
 import { MessageService } from "./message.service";
 import { Message } from "./entities/message.entity";
 import { CreateMessageInput } from "./dto/create-message.input";
@@ -8,7 +8,6 @@ import { Public } from "../common/decorator/public.decorator";
 import { CurrentUser } from "../common/decorator/current-user.decorator";
 import { UserPayloadTypes } from "../users/types/user-payload.types";
 import { User } from "../users/entities/user.entity";
-import { StartupsApply } from "../startups-apply/entities/startups-apply.entity";
 
 @Resolver(() => Message)
 export class MessageResolver {

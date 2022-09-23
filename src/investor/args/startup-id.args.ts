@@ -1,4 +1,4 @@
-import { IsNotEmpty, Validate } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 import { Field, ArgsType } from "@nestjs/graphql";
 
 @ArgsType()
