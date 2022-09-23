@@ -1,10 +1,11 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { User } from "../../users/entities/user.entity";
 import { Startup } from "../../startups/entities/startup.entity";
 
 @ObjectType()
 @Entity()
+// @Unique("investor_unique_participant", ["investor", "startup"]) //   //TODO unique together : investor and startup
 export class InvestedStartup {
   @Field(() => String)
   @PrimaryGeneratedColumn("uuid")

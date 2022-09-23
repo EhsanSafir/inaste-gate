@@ -129,13 +129,13 @@ type Mutation {
 }
 
 type Query {
+  allStartupApplyByCurrentUser: [StartupsApply!]!
   allStartups: [Startup!]!
   allStartupsByCurrentUser: [Startup!]!
   hasInvestorProfile: Boolean!
   investorProfile: Investor!
   me: User!
-  message: [Message!]!
-  startupApplyByCurrentUser: [StartupsApply!]!
+  messageByCurrentUser: [Message!]!
   startupById(id: Int!): Startup!
   startupsApplyById(id: String!): StartupsApply!
 }

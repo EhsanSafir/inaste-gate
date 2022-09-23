@@ -26,7 +26,7 @@ export class StartupsApplyResolver {
     }
   }
 
-  @Query(() => [StartupsApply], { name: "startupApplyByCurrentUser" })
+  @Query(() => [StartupsApply], { name: "allStartupApplyByCurrentUser" })
   findAllByUser(@CurrentUser() currentUser: UserPayloadTypes) {
     return this.startupsApplyService.findAllByUser(currentUser.userId);
   }

@@ -3,10 +3,13 @@ import { CreateMessageInput } from './dto/create-message.input';
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Message } from "./entities/message.entity";
+import { UsersService } from "../users/users.service";
 
 @Injectable()
 export class MessageService {
-  constructor(@InjectRepository(Message) private  messageRepository:Repository<Message>) {
+  constructor(@InjectRepository(Message) private  messageRepository:Repository<Message>,
+              private userService:UsersService
+              ) {
   }
   async create(createMessageInput: CreateMessageInput) {
     const messageInstance = this.messageRepository.create(createMessageInput)
@@ -16,5 +19,10 @@ export class MessageService {
   findByUser(userId) {
     return this.messageRepository.findBy({receiverId:userId})
   }
+
+  findOwnerUser(userId) {
+    return  this.userService.findOneById(userId)
+  }
+
 
 }

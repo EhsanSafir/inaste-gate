@@ -4,9 +4,10 @@ import { MessageResolver } from './message.resolver';
 import { PubSub } from "graphql-subscriptions";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Message } from "./entities/message.entity";
+import { UsersModule } from "../users/users.module";
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Message])],
+  imports:[TypeOrmModule.forFeature([Message]),UsersModule],
   providers: [MessageResolver, MessageService,
     {
       provide: 'PUB_SUB',

@@ -1,5 +1,5 @@
 mutation{
-    createInvestorParticipant(startup:"d5026df5-4122-47a9-85ee-d975dc785e2f"){
+    createInvestorParticipant(startup:"b0ce6fc6-af49-47a2-9acf-8a7e664a0655"){
         startupId
     }
 }
